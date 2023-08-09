@@ -10,30 +10,32 @@
  *
  * Return: 0 on success
 */
-int main(void)
+int main(int argc, char **argv)
 {
 	char *prompt = retrieve_prompt();
 	char command[128];
-	char *argv[2];
-	char *envv[1] = {NULL};
+	char *av[2];
+	char *ev[1] = {NULL};
 	int status;
 	pid_t pid;
+
+	(void)argc;
 
 	while (1)
 	{
 		printf("%s ", prompt);
 		scanf("%s", command);
 
-		argv[0] = command;
-		argv[1] = NULL;
+		av[0] = command;
+		av[1] = NULL;
 
 		pid = fork();
 		waitpid(pid, &status, 0);
 
 		if (pid == 0)
 		{
-			if (execve(command, argv, envv) == -1)
-				perror("Error");
+			if (execve(command, av, ev) == -1)
+				perror(argv[0]);
 		}
 	}
 
