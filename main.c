@@ -9,15 +9,20 @@
 int main(int argc, char **argv)
 {
 	char *prompt = retrieve_prompt();
-	char command[128];
 	char *cfile = argv[0];
+	char command[128];
 
 	(void)argc;
 
 	while (1)
 	{
 		printf("%s ", prompt);
-		scanf("%s", command);
+
+		if (scanf("%99[^\n]%*c", command) != 1)
+		{
+			while (getchar() != '\n');
+			continue;
+		}
 
 		fork_process(command, cfile);
 	}
