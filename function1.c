@@ -37,23 +37,36 @@ char *retrieve_prompt()
 }
 
 /**
- * for_process - babies uwu
- * @command: first arg
- * @cfile: file's name, AKA argv[0]
+ * for_process - Executes a command in a child process.
+ * @args:  An array of arguments.
+ * @cfile:  A double pointer to the beginning of args.
 */
-void fork_process(char *command, char *cfile)
+void fork_process(char **args, char **front)
 {
-	int status;
-	pid_t pid;
+	pid_t child_pid;
+	int status, flag = 0;
+	char *command = args[0];
 
-	pid = fork();
-	waitpid(pid, &status, 0);
-
-	if (pid == -1)
-			perror(cfile);
-
-		if (pid == 0)
-			cmd_run(command, cfile);
+	child_pid = fork();
+	if (child_pid == -1)
+	{
+		if (flag)
+			free(command);
+		perror("Error child:");
+		return (1);
+	}
+	if (child_pid == 0)
+	{
+		execve(command, args, environ);
+		if (errno == EACCES)
+			ret = (create_error(args, 126));
+	}
+	else
+		wait(&status);	
+		
+	if (flag)
+		free(command);
+	
 }
 
 /**
