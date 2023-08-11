@@ -8,6 +8,7 @@
 #include <pwd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include "function1.c"
 
 char *retrieve_prompt();
 void fork_process(char *command, char *cfile);

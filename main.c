@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 			while (getchar() != '\n');
 			continue;
 		}
-
+		printf("%s\n",command);
 		fork_process(command, cfile);
 	}
 	return (0);
