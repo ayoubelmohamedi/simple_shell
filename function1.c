@@ -45,7 +45,8 @@ void fork_process(char **args, char **front)
 {
 	pid_t child_pid;
 	int status, flag = 0;
-	char *command = args[0];
+	char *cmd = args;
+	char *ev[1] = {NULL};
 
 	child_pid = fork();
 	if (child_pid == -1)
@@ -53,13 +54,11 @@ void fork_process(char **args, char **front)
 		if (flag)
 			free(command);
 		perror("Error child:");
-		return (1);
 	}
 	if (child_pid == 0)
 	{
-		execve(command, args, environ);
-		if (errno == EACCES)
-			ret = (create_error(args, 126));
+		if (execve(command, args, ev) == -1)
+			perror(args);		
 	}
 	else
 		wait(&status);	
@@ -84,4 +83,4 @@ void cmd_run(char *cmd, char* cfile)
 
 	if (execve(cmd, av, ev) == -1)
 		perror(cfile);
-}
+}	
