@@ -20,7 +20,7 @@ int main(int argc, char **argv)
             continue;
         }
 
-		argc = 0;
+		argc = 1;
         argv[argc] = strtok(input, " \n");
         while (argv[argc] != NULL)
         {
@@ -28,8 +28,8 @@ int main(int argc, char **argv)
             argv[argc] = strtok(NULL, " \n");
         }
 
-        if (argc > 0)
-            fork_process(argv[0], argv);
+        if (argc > 1)
+            fork_process(argv[1], argv);
     }
 
     return (0);

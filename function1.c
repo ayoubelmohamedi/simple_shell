@@ -54,8 +54,8 @@ void fork_process(char *cmd, char **args)
 
 	if (child_pid == 0)
 	{
-		execve(cmd, args, ev);
-		perror("Error execve");
+		execve(cmd, args + 1, ev);
+		perror(args[0]);
         	exit(EXIT_FAILURE);
 	
 	}
