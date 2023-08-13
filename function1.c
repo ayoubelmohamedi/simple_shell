@@ -42,25 +42,24 @@ char *retrieve_prompt()
 void fork_process(char *cmd, char **cfile)
 {
 	pid_t child_pid;
-	int status, flag = 0;
+	int status;
 	char *ev[] = {NULL};
-
+	
 	child_pid = fork();
-	if (child_pid == -1)
+	if (child_pid == -1) 
 	{
-		if (flag)
-			free(cmd);
-		perror("Error child:");
-	}
+       		perror("Error fork:");
+        	exit(EXIT_FAILURE);
+    	}
+
 	if (child_pid == 0)
 	{
-		if (execve(cmd, cfile, ev) == -1)
-			perror(cfile[0]);		
+		execve(cmd, cfile, ev);
+		perror("Error execve:");
+        	exit(EXIT_FAILURE);
+	
 	}
 	else
 		wait(&status);	
-		
-	if (flag)
-		free(cmd);
 	
 }

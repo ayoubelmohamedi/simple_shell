@@ -8,8 +8,13 @@
 int main(int argc, char **argv)
 {
 	char *prompt = retrieve_prompt();
-	char *cmd;
-	
+	char *cmd = (char *)malloc(100);
+
+	if (!cmd) {
+        perror("Memory allocation failed:");
+        return (1);	
+    }	
+
 	cmd = argv[0];
 	(void)argc;
 
@@ -24,5 +29,7 @@ int main(int argc, char **argv)
 		}
 		fork_process(cmd, argv);
 	}
+
+	free(cmd);
 	return (0);
 }
