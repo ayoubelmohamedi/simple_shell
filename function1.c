@@ -1,7 +1,5 @@
 #include "main.h"
 
-void cmd_run(char *cmd, char* cfile);
-
 /**
  * retrieve_prompt - makes proper prompt for the user
  *
@@ -57,7 +55,7 @@ void fork_process(char *cmd, char **cfile)
 	if (child_pid == 0)
 	{
 		if (execve(cmd, cfile, ev) == -1)
-			perror(cfile);		
+			perror(cfile[0]);		
 	}
 	else
 		wait(&status);	
@@ -66,20 +64,3 @@ void fork_process(char *cmd, char **cfile)
 		free(cmd);
 	
 }
-
-/**
- * cmd_run - executes given file
- * @cmd: command to use
- * @cfile: file's name, AKA argv[0]
-*/
-void cmd_run(char *cmd, char* cfile)
-{
-	char *av[2];
-	char *ev[1] = {NULL};
-
-	av[0] = cmd;
-	av[1] = NULL;
-
-	if (execve(cmd, av, ev) == -1)
-		perror(cfile);
-}	
