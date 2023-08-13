@@ -10,5 +10,5 @@
 #include <sys/wait.h>
 
 char *retrieve_prompt();
-void fork_process(char *cmd, char **cfile);
+void fork_process(char *cmd, char **args);
 #endif

@@ -8,28 +8,29 @@
 int main(int argc, char **argv)
 {
 	char *prompt = retrieve_prompt();
-	char *cmd = (char *)malloc(100);
+    char input[100];
 
-	if (!cmd) {
-        perror("Memory allocation failed:");
-        return (1);	
-    }	
+    while (1)
+    {
+        printf("%s ", prompt);
 
-	cmd = argv[0];
-	(void)argc;
+        if (fgets(input, sizeof(input), stdin) == NULL)
+        {
+            perror("Error");
+            continue;
+        }
 
-	while (1)
-	{
-		printf("%s ", prompt);
+		argc = 0;
+        argv[argc] = strtok(input, " \n");
+        while (argv[argc] != NULL)
+        {
+            argc++;
+            argv[argc] = strtok(NULL, " \n");
+        }
 
-		if (scanf("%99[^\n]%*c", cmd) != 1)
-		{
-			while (getchar() != '\n');
-			continue;
-		}
-		fork_process(cmd, argv);
-	}
+        if (argc > 0)
+            fork_process(argv[0], argv);
+    }
 
-	free(cmd);
-	return (0);
+    return (0);
 }

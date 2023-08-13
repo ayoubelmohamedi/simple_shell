@@ -39,27 +39,26 @@ char *retrieve_prompt()
  * @args:  An array of arguments.
  * @cfile:  A double pointer to the beginning of args.
 */
-void fork_process(char *cmd, char **cfile)
+void fork_process(char *cmd, char **args)
 {
 	pid_t child_pid;
 	int status;
 	char *ev[] = {NULL};
-	
+
 	child_pid = fork();
 	if (child_pid == -1) 
 	{
-       		perror("Error fork:");
+       		perror("Error fork");
         	exit(EXIT_FAILURE);
     	}
 
 	if (child_pid == 0)
 	{
-		execve(cmd, cfile, ev);
-		perror("Error execve:");
+		execve(cmd, args, ev);
+		perror("Error execve");
         	exit(EXIT_FAILURE);
 	
 	}
 	else
-		wait(&status);	
-	
+		wait(&status);
 }
