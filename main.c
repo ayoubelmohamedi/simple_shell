@@ -9,7 +9,7 @@
 int main(int argc, char **argv)
 {
 	char *prompt = retrieve_prompt();
-	char *cfile = argv[0];
+	char **cfile = 	argv;
 	char command[128];
 
 	(void)argc;
@@ -23,7 +23,6 @@ int main(int argc, char **argv)
 			while (getchar() != '\n');
 			continue;
 		}
-		printf("%s\n",command);
 		fork_process(command, cfile);
 	}
 	return (0);
