@@ -41,7 +41,7 @@ char *retrieve_prompt()
  * @args:  An array of arguments.
  * @cfile:  A double pointer to the beginning of args.
 */
-void fork_process(char **args, char **front)
+void fork_process(char *cmd, char **cfile)
 {
 	pid_t child_pid;
 	int status, flag = 0;
