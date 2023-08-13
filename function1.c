@@ -45,26 +45,25 @@ void fork_process(char **args, char **front)
 {
 	pid_t child_pid;
 	int status, flag = 0;
-	char *cmd = args;
 	char *ev[1] = {NULL};
 
 	child_pid = fork();
 	if (child_pid == -1)
 	{
 		if (flag)
-			free(command);
+			free(cmd);
 		perror("Error child:");
 	}
 	if (child_pid == 0)
 	{
-		if (execve(command, args, ev) == -1)
-			perror(args);		
+		if (execve(cmd, cfile, ev) == -1)
+			perror(cfile);		
 	}
 	else
 		wait(&status);	
 		
 	if (flag)
-		free(command);
+		free(cmd);
 	
 }
 
