@@ -43,7 +43,7 @@ void fork_process(char *cmd, char **cfile)
 {
 	pid_t child_pid;
 	int status, flag = 0;
-	char *ev[1] = {NULL};
+	char *ev[] = {NULL};
 
 	child_pid = fork();
 	if (child_pid == -1)
