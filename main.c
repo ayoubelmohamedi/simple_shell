@@ -9,7 +9,6 @@
 int main(int argc, char **argv)
 {
 	char *prompt = retrieve_prompt();
-	char **cfile = 	argv;
 	char *cmd;
 	
 	cmd = argv[0];
@@ -24,7 +23,7 @@ int main(int argc, char **argv)
 			while (getchar() != '\n');
 			continue;
 		}
-		fork_process(cmd, cfile);
+		fork_process(cmd, argv);
 	}
 	return (0);
 }
