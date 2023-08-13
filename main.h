@@ -11,6 +11,6 @@
 #include "function1.c"
 
 char *retrieve_prompt();
-void fork_process(char *cmd, char **cfile);
+void fork_process(char **args, char **front);
 
 #endif
