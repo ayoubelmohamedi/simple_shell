@@ -20,5 +20,7 @@ char *retrieve_prompt();
 void fork_process(char *cmd, char **args);
 char *_getline();
 void hashtag_handle(char *buff);
+char **parse_cmd(char *input);
+
 
 #endif
