@@ -15,16 +15,16 @@ int main(int argc, char **argv)
     	{
 		if (isatty(STDIN_FILENO))
         		printf("%s ", prompt);
-
-        	input = getline();
-
+		
+		input = _getline();
+		
 		if (input[0] == '\0')
 		{
 			continue;
 		}
 
 		cmd = parse_cmd(input);
-
+		
         	if (argc > 1)
             		fork_process(argv[1], cmd);
     }
