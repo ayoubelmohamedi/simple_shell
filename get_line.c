@@ -6,9 +6,9 @@
 */
 char *_getline()
 {
-int i, buffsize = BUFSIZE, rd;
-char c = 0;
-char *buff = malloc(buffsize);
+	int i, buffsize = BUFSIZE, rd;
+	char c = 0;
+	char *buff = malloc(buffsize);
 
 	if (buff == NULL)
 	{
