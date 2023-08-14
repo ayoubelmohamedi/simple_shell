@@ -7,29 +7,26 @@
 */
 int main(int argc, char **argv)
 {
+
 	char *prompt = retrieve_prompt();
-    char input[100];
+   	char *input, **cmd;
 
-    while (1)
-    {
-        printf("%s ", prompt);
+    	while (1)
+    	{
+		if (isatty(STDIN_FILENO))
+        		printf("%s ", prompt);
 
-        if (fgets(input, sizeof(input), stdin) == NULL)
-        {
-            perror("Error");
-            continue;
-        }
+        	input = getline();
 
-		argc = 1;
-        argv[argc] = strtok(input, " \n");
-        while (argv[argc] != NULL)
-        {
-            argc++;
-            argv[argc] = strtok(NULL, " \n");
-        }
+		if (input[0] == '\0')
+		{
+			continue;
+		}
 
-        if (argc > 1)
-            fork_process(argv[1], argv);
+		cmd = parse_cmd(input);
+
+        	if (argc > 1)
+            		fork_process(argv[1], cmd);
     }
 
     return (0);
