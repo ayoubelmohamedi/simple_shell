@@ -6,7 +6,8 @@
 */
 char *_getline()
 {
-	int i, buffsize = BUFSIZE, rd;
+	
+	int i, rd,buffsize = BUFSIZE;
 	char c = 0;
 	char *buff = malloc(buffsize);
 
@@ -33,7 +34,7 @@ char *_getline()
 		}
 		if (i >= buffsize)
 		{
-			buff = realloc(buff, buffsize, buffsize + 1);
+			buff = realloc(buff, buffsize + 1);
 			if (buff == NULL)
 			{
 				return (NULL);
