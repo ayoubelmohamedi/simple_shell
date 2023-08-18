@@ -9,6 +9,7 @@ int main(int argc, char **argv)
 {
 	char *prompt = retrieve_prompt();
     char input[100];
+    char *path = _getenv("PATH") ;
 
     while (1)
     {
@@ -29,7 +30,12 @@ int main(int argc, char **argv)
         }
 
         if (argc > 1)
-            fork_process(argv[1], argv);
+        {
+            char *full_path = get_path(argv[1], path);
+            argv[1] = full_path;
+
+            fork_process(full_path, argv);
+        }
     }
 
     return (0);

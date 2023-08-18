@@ -26,10 +26,10 @@ char *retrieve_prompt()
 		return (NULL);
 	}
 
-	strcpy(prompt, user_info->pw_name);
-	strcat(prompt, ":");
-	strcat(prompt, cwd);
-	strcat(prompt, "$");
+	_strcpy(prompt, user_info->pw_name);
+	_strcat(prompt, ":");
+	_strcat(prompt, cwd);
+	_strcat(prompt, "$");
 
 	return (prompt);
 }
@@ -48,15 +48,15 @@ void fork_process(char *cmd, char **args)
 	child_pid = fork();
 	if (child_pid == -1) 
 	{
-       		perror("Error fork");
-        	exit(EXIT_FAILURE);
-    	}
+    	perror("Error fork");
+		exit(EXIT_FAILURE);
+    }
 
 	if (child_pid == 0)
 	{
 		execve(cmd, args + 1, ev);
 		perror(args[0]);
-        	exit(EXIT_FAILURE);
+        exit(EXIT_FAILURE);
 	
 	}
 	else
