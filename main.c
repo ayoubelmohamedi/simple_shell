@@ -16,10 +16,7 @@ int main(int argc, char **argv)
         printf("%s ", prompt);
 
         if (fgets(input, sizeof(input), stdin) == NULL)
-        {
-            perror("Error");
-            continue;
-        }
+            break;
 
 		argc = 1;
         argv[argc] = strtok(input, " \n");
