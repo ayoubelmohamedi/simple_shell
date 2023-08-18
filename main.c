@@ -8,15 +8,16 @@
 int main(int argc, char **argv)
 {
 	char *prompt = retrieve_prompt();
-    char input[100];
+    size_t input_size = 128;
+    char *input = (char *)malloc(sizeof(input_size));
     char *path = _getenv("PATH") ;
     char *__exit__ = "exit";
 
     while (1)
     {
-        printf("%s ", prompt);
+        write(1, prompt, _strlen(prompt));
 
-        if (fgets(input, sizeof(input), stdin) == NULL)
+        if (getline(&input, &input_size, stdin) == EOF)
             break;
 
         if (_strcmp(input, __exit__) == 0)
@@ -24,6 +25,7 @@ int main(int argc, char **argv)
 
 		argc = 1;
         argv[argc] = strtok(input, " \n");
+
         while (argv[argc] != NULL)
         {
             argc++;
@@ -38,6 +40,7 @@ int main(int argc, char **argv)
             fork_process(full_path, argv);
         }
     }
+    free(input);
 
     return (0);
 }

@@ -29,7 +29,7 @@ char *retrieve_prompt()
 	_strcpy(prompt, user_info->pw_name);
 	_strcat(prompt, ":");
 	_strcat(prompt, cwd);
-	_strcat(prompt, "$");
+	_strcat(prompt, "$ ");
 
 	return (prompt);
 }
