@@ -20,6 +20,7 @@ char *get_path(char *cmd, char *path);
 char* _getenv(const char* env_var);
 
 /* FUNC1_C */
+int _strcmp(char *str1, char *str2);
 int _strncmp(const char *str1, const char *str2, size_t n);
 size_t _strcspn(const char *s, const char *reject);
 char *_strdup(char *str);

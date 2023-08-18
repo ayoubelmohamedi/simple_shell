@@ -1,6 +1,27 @@
 #include "main.h"
 
 /**
+ * _strcmp - strmcpm
+ * @str1: First string
+ * @str2: Second string
+ *
+ * Return: 0 if equal, otherwise the differences
+*/
+int _strcmp(char *str1, char *str2)
+{
+	int i = 0;
+
+	while (str1[i] != '\0' && str2[i] != '\0')
+	{
+		if (str2[i] != str1[i])
+			return (str1[i] - str2[i]);
+		i++;
+	}
+
+return (0);
+}
+
+/**
  * _strncmp - custom strncmp()
  * @str1: first string
  * @str2: second string
