@@ -33,4 +33,8 @@ int _strlen(char *str);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
 
+/* ENVIRON_C*/
+char **_copyenv(void);
+void free_env(void);
+char **_getenv(const char *var);
 #endif
