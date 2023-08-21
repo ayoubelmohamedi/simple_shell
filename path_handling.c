@@ -37,24 +37,3 @@ char *get_path(char *cmd, char *path)
     }
     return (NULL);
 }
-
-/**
- * _getenv - getenv
- * @env_var: name of the environment variable.
- * 
- * Return: $PATH
-*/
-char* _getenv(const char* env_var)
-{
-    int i;
-
-    for (i = 0; environ[i] != NULL; i++)
-    {
-        char* env_entry = environ[i];
-        size_t len = _strcspn(env_entry, "=");
-
-        if (_strncmp(env_entry, env_var, len) == 0)
-            return (env_entry + len + 1);
-    }
-    return (NULL);
-}
