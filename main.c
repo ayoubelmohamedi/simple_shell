@@ -10,11 +10,11 @@
 int main(int argc, char **argv)
 {
 	/*char *prompt = retrieve_prompt();*/
+	int exit_status = 0;
 	int check_terminal = isatty(0);
 	size_t input_size = 128;
 	char *input = (char *)malloc(input_size);
 	char *path = _getenv("PATH");
-	int latest_exit_status = 0;
 
 	while (1)
 	{
@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 			break;
 
 		if (_strcmp(input, "exit") == 0)
-			exit(latest_exit_status);
+			exit(exit_status);
 
 		argc = 1;
 		argv[argc] = strtok(input, " \n");
@@ -41,8 +41,7 @@ int main(int argc, char **argv)
 			char *full_path = get_path(argv[1], path);
 
 			argv[1] = full_path;
-			latest_exit_status = argc - 1;
-			fork_process(full_path, argv);
+			exit_status = fork_process(full_path, argv);
 		}
 	}
 	free(input);

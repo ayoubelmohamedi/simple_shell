@@ -41,12 +41,15 @@ char *retrieve_prompt()
  * fork_process - Executes a command in a child process.
  * @cmd: commad
  * @args: An array of arguments.
+ *
+ * Return: status;
 */
-void fork_process(char *cmd, char **args)
+int fork_process(char *cmd, char **args)
 {
 	pid_t child_pid;
 	int status;
 	char *ev[] = {NULL};
+	int exit_status;
 
 	child_pid = fork();
 	if (child_pid == -1)
@@ -60,8 +63,12 @@ void fork_process(char *cmd, char **args)
 		execve(cmd, args + 1, ev);
 		perror(args[0]);
 		exit(EXIT_FAILURE);
-
 	}
 	else
 		wait(&status);
+
+	if (_WIFEXITED(status))
+		exit_status = (status >> 8) & 0xFF;
+
+	return (exit_status);
 }

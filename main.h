@@ -13,11 +13,14 @@ extern char **environ;
 
 /* SIMPLE_SHELL_C */
 /*char *retrieve_prompt();*/
-void fork_process(char *cmd, char **args);
+int fork_process(char *cmd, char **args);
 
 /* PATH_HANDLING_C */
 char *get_path(char *cmd, char *path);
 char *_getenv(const char *env_var);
+
+/* EXIT_C */
+int _WIFEXITED(int status);
 
 /* FUNC1_C */
 int _strcmp(char *str1, char *str2);
