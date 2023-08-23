@@ -11,8 +11,8 @@ extern char **environ;
 #include <sys/types.h>
 #include <sys/wait.h>
 
-/* SHELL_C */
-char *retrieve_prompt();
+/* SIMPLE_SHELL_C */
+/*char *retrieve_prompt();*/
 void fork_process(char *cmd, char **args);
 
 /* PATH_HANDLING_C */

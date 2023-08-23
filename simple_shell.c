@@ -5,7 +5,7 @@
  *
  * Return: prompt
 */
-char *retrieve_prompt()
+/*char *retrieve_prompt()
 {
 	uid_t uid = getuid();
 
@@ -32,7 +32,7 @@ char *retrieve_prompt()
 	_strcat(prompt, "$ ");
 
 	return (prompt);
-}
+}*/
 
 /**
  * fork_process - Executes a command in a child process.

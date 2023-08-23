@@ -9,7 +9,7 @@
 */
 int main(int argc, char **argv)
 {
-	char *prompt = retrieve_prompt();
+	/*char *prompt = retrieve_prompt();*/
 	size_t input_size = 128;
 	char *input = (char *)malloc(sizeof(input_size));
 	char *path = _getenv("PATH");
@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 
 	while (1)
 	{
-		write(1, prompt, _strlen(prompt));
+		write(1, "$ ", 2);
 
 		if (getline(&input, &input_size, stdin) == EOF)
 			break;
