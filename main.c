@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 	size_t input_size = 128;
 	char *input = (char *)malloc(input_size);
 	char *path = _getenv("PATH");
-	char *__exit__ = "exit";
+	int latest_exit_status = 0;
 
 	while (1)
 	{
@@ -24,8 +24,8 @@ int main(int argc, char **argv)
 		if (getline(&input, &input_size, stdin) == EOF)
 			break;
 
-		if (_strcmp(input, __exit__) == 0)
-			exit(0);
+		if (_strcmp(input, "exit") == 0)
+			exit(latest_exit_status);
 
 		argc = 1;
 		argv[argc] = strtok(input, " \n");
@@ -36,11 +36,13 @@ int main(int argc, char **argv)
 			argv[argc] = strtok(NULL, " \n");
 		}
 
+		char *full_path;
+
 		if (argc > 1)
 		{
-			char *full_path = get_path(argv[1], path);
-
+			full_path = get_path(argv[1], path);
 			argv[1] = full_path;
+			latest_exit_status = argc - 1;
 			fork_process(full_path, argv);
 		}
 	}
