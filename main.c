@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 
 	while (1)
 	{
-		/*write(1, "$ ", 2);*/
+		/*write(STDOUT_FILENO, "$ ", 2);*/
 
 		if (getline(&input, &input_size, stdin) == EOF)
 			break;

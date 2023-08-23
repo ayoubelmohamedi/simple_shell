@@ -75,11 +75,8 @@ size_t _strcspn(const char *str, const char *reject)
  */
 char *_strdup(char *str)
 {
-	char *buff;
-	size_t i, j;
-
-	i = _strlen(str);
-	buff = malloc(sizeof(char) * (i + 1));
+	size_t i = _strlen(str), j;
+	char *buff = malloc(sizeof(char) * (i + 1));
 
 	if (buff == NULL)
 		return (NULL);

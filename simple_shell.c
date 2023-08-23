@@ -8,18 +8,20 @@
 
 char *retrieve_prompt()
 {
-	uid_t uid = getuid();
+	/*uid_t uid = getuid();*/
 
-	struct passwd *user_info = getpwuid(uid);
+	/*struct passwd *user_info = getpwuid(uid);*/
 
 	static char prompt[2048];
 	char cwd[1024];
 
+	/*
 	if (user_info == NULL)
 	{
 		perror("getpwuid");
 		return (NULL);
 	}
+	*/
 
 	if (getcwd(cwd, sizeof(cwd)) == NULL)
 	{
@@ -27,7 +29,7 @@ char *retrieve_prompt()
 		return (NULL);
 	}
 
-	_strcpy(prompt, user_info->pw_name);
+	/*_strcpy(prompt, user_info->pw_name);*/
 	_strcat(prompt, ":");
 	_strcat(prompt, cwd);
 	_strcat(prompt, "$ ");

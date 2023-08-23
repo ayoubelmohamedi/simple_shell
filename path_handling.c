@@ -9,7 +9,7 @@
 */
 char *get_path(char *cmd, char *path)
 {
-	char full_path[256];
+	char full_path[1024];
 
 	if (cmd[0] == '/')
 		return (cmd);
@@ -32,8 +32,8 @@ char *get_path(char *cmd, char *path)
 			}
 			token = strtok(NULL, ":");
 		}
-		return (cmd);
 		free(path_copy);
+		return (cmd);
 	}
 	return (NULL);
 }
