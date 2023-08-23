@@ -32,6 +32,7 @@ char *get_path(char *cmd, char *path)
 			}
 			token = strtok(NULL, ":");
 		}
+		return (cmd);
 		free(path_copy);
 	}
 	return (NULL);
