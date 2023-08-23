@@ -21,11 +21,11 @@ int main(int argc, char **argv)
 		if (check_terminal == 1)
 			write(STDOUT_FILENO, "$ ", 2);
 
-		if (getline(&input, &input_size, stdin) == EOF ||
-		_strcmp(input, "exit") == 0)
+		if (getline(&input, &input_size, stdin) == EOF)
+			break;
+
+		if (_strcmp(input, "exit") == 0)
 			exit(latest_exit_status);
-
-
 
 		argc = 1;
 		argv[argc] = strtok(input, " \n");
