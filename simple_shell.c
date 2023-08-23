@@ -16,11 +16,11 @@ char *retrieve_prompt()
 	char cwd[1024];
 
 	/*
-	if (user_info == NULL)
-	{
-		perror("getpwuid");
-		return (NULL);
-	}
+	*if (user_info == NULL)
+	*{
+	*	perror("getpwuid");
+	*	return (NULL);
+	*}
 	*/
 
 	if (getcwd(cwd, sizeof(cwd)) == NULL)
@@ -30,8 +30,8 @@ char *retrieve_prompt()
 	}
 
 	/*_strcpy(prompt, user_info->pw_name);*/
-	_strcat(prompt, ":");
-	_strcat(prompt, cwd);
+	/*_strcat(prompt, ":");*/
+	_strcpy(prompt, cwd);
 	_strcat(prompt, "$ ");
 
 	return (prompt);

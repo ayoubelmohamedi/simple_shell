@@ -10,6 +10,7 @@
 int main(int argc, char **argv)
 {
 	/*char *prompt = retrieve_prompt();*/
+	int check_terminal = isatty(0);
 	size_t input_size = 128;
 	char *input = (char *)malloc(input_size);
 	char *path = _getenv("PATH");
@@ -17,7 +18,8 @@ int main(int argc, char **argv)
 
 	while (1)
 	{
-		/*write(STDOUT_FILENO, "$ ", 2);*/
+		if (check_terminal == 1)
+			write(STDOUT_FILENO, "$ ", 2);
 
 		if (getline(&input, &input_size, stdin) == EOF)
 			break;
