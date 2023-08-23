@@ -36,11 +36,10 @@ int main(int argc, char **argv)
 			argv[argc] = strtok(NULL, " \n");
 		}
 
-		char *full_path;
-
 		if (argc > 1)
 		{
-			full_path = get_path(argv[1], path);
+			char *full_path = get_path(argv[1], path);
+
 			argv[1] = full_path;
 			latest_exit_status = argc - 1;
 			fork_process(full_path, argv);
