@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * get_path: Creates full path of binary code and executables
+ * get_path - Creates full path of binary code and executables
  * @cmd: Initial cmd frag
  * @path: $PATH
  *
