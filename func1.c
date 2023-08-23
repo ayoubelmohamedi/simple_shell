@@ -31,32 +31,33 @@ return (0);
 */
 int _strncmp(const char *str1, const char *str2, size_t n)
 {
-    size_t i;
+	size_t i;
 
-    for (i = 0; i < n; i++)
-    {
-        if (str1[i] != str2[i])
-            return ((unsigned char)str1[i] - (unsigned char)str2[i]);
+	for (i = 0; i < n; i++)
+	{
+		if (str1[i] != str2[i])
+			return ((unsigned char)str1[i] - (unsigned char)str2[i]);
 
-        if (str1[i] == '\0')
-            return (0);
-    }
-    return (0);
+		if (str1[i] == '\0')
+			return (0);
+	}
+	return (0);
 }
 
 /**
  * _strcspn - custom strcspn()
  * @str: string.
  * @reject: reject.
- * 
+ *
  * Return: count
 */
 size_t _strcspn(const char *str, const char *reject)
 {
 	const char *p, *r;
 	size_t count = 0;
+
 	for (p = str; *p != '\0'; ++p)
-    {
+	{
 		for (r = reject; *r != '\0'; ++r)
 			if (*p == *r)
 				return (count);
@@ -74,7 +75,7 @@ size_t _strcspn(const char *str, const char *reject)
  */
 char *_strdup(char *str)
 {
-    char *buff;
+	char *buff;
 	size_t i, j;
 
 	i = _strlen(str);
@@ -99,8 +100,8 @@ int _strlen(char *str)
 {
 	int len = 0;
 
-		while (str[len] != '\0')
-            len++;
+	while (str[len] != '\0')
+		len++;
 
 return (len);
 }

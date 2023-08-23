@@ -35,9 +35,9 @@ char *retrieve_prompt()
 }
 
 /**
- * for_process - Executes a command in a child process.
- * @args:  An array of arguments.
- * @cfile:  A double pointer to the beginning of args.
+ * fork_process - Executes a command in a child process.
+ * @cmd: commad
+ * @args: An array of arguments.
 */
 void fork_process(char *cmd, char **args)
 {
@@ -46,18 +46,18 @@ void fork_process(char *cmd, char **args)
 	char *ev[] = {NULL};
 
 	child_pid = fork();
-	if (child_pid == -1) 
+	if (child_pid == -1)
 	{
-    	perror("Error fork");
+		perror("Error fork");
 		exit(EXIT_FAILURE);
-    }
+	}
 
 	if (child_pid == 0)
 	{
 		execve(cmd, args + 1, ev);
 		perror(args[0]);
-        exit(EXIT_FAILURE);
-	
+		exit(EXIT_FAILURE);
+
 	}
 	else
 		wait(&status);
