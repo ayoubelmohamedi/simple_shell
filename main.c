@@ -11,7 +11,7 @@ int main(int argc, char **argv)
 {
 	/*char *prompt = retrieve_prompt();*/
 	size_t input_size = 128;
-	char *input = (char *)malloc(sizeof(input_size));
+	char *input = (char *)malloc(input_size);
 	char *path = _getenv("PATH");
 	char *__exit__ = "exit";
 
