@@ -67,7 +67,7 @@ int fork_process(char *cmd, char **args)
 	else
 		wait(&status);
 
-	if (_WIFEXITED(status))
+	if (WIFEXITED(status))
 		exit_status = (status >> 8) & 0xFF;
 
 	return (exit_status);
